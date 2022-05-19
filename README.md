@@ -5,7 +5,6 @@
 <h2>JMusicMatchWrapper</h2>
 </div>
 
----
 <div align = "center">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTla_fOvd40xenshAZld6kpv8B5pf1aVlDCnIBiHpI4YA&s" width="40" height="40" alt="MusixMatch">
 <img src="https://www.nicepng.com/png/detail/311-3118049_image-gallery-of-java-logo-transparent-duke-java.png" width="40" height="40">
