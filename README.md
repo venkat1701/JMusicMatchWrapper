@@ -12,7 +12,7 @@
 </div>
 
 <br>
----
+
 <h3>MusixMatch API</h3>
 <p>The Musixmatch API allows you to read objects from our huge 100% licensed lyrics database.
 
