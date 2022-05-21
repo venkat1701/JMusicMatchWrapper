@@ -1,9 +1,11 @@
 package com.venkat.musixmatch.constants;
 
+import lombok.Getter;
+
 /**
+ * StatusCodes for Results.
  * @author Venkat.
  * @since 1.0
- * StatusCodes for Results.
  */
 public enum StatusCodes {
 
@@ -16,7 +18,9 @@ public enum StatusCodes {
     NOT_FOUND_MET(405, "Requested Method Not Found"),
     REQ_UNSATISFIED(503, "Our system is a bit busy at the moment and your request can’t be satisfied.");
 
+    @Getter
     private int code;
+    @Getter
     private String desc;
 
     StatusCodes(int code, String desc){

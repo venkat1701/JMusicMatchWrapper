@@ -10,13 +10,12 @@ import com.venkat.musixmatch.tracks.lyrics.Lyrics;
 import com.venkat.musixmatch.util.ext.GenericExtractor;
 import lombok.SneakyThrows;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Venkat.
- * @since 1.0
  * <br>
  * MusixMatch class lets you use its methods to get music tracks and lyrics.
  * <br>
@@ -29,6 +28,8 @@ import java.util.Map;
  *  System.out.println(trackInfo.toString());
  * }
  * </pre>
+ * @author Venkat.
+ * @since 1.0
  */
 public final class MusixMatch {
 
@@ -42,6 +43,7 @@ public final class MusixMatch {
     /**
      * @param apiKey API Key for working with the API.
      */
+
     public MusixMatch(String apiKey){
         this.apiKey = apiKey;
         this.map = new HashMap<>();
@@ -65,9 +67,7 @@ public final class MusixMatch {
         this.map.put(FilteringConstants.TRACK_ID.get(), String.format("%s", Integer.parseInt(id)));
 
         String response = MusixRequestHandler.sendHttpRequest(MethodConstants.TRACK_GET, map);
-
         this.extractor = this.gson.fromJson(response, GenericExtractor.class);
-
         var container = extractor.getContainer().getBody();
         track.setInfo(container.getTrackInfo());
         this.gson = null;

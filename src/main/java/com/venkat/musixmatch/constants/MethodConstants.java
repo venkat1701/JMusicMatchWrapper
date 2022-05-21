@@ -1,9 +1,9 @@
 package com.venkat.musixmatch.constants;
 
 /**
+ * Constants of Sending Requests to the API.
  * @author Venkat.
  * @since 1.0
- * Constants of Sending Requests to the API.
  */
 public enum MethodConstants {
 

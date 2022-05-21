@@ -10,13 +10,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Scanner;
 
 /**
+ * Sends a Request to the MusixMatch API.
+ *
  * @author Venkat.
  * @since 1.0
- * Sends a Request to the MusixMatch API.
  */
 public class MusixRequestHandler {
 
@@ -31,7 +33,8 @@ public class MusixRequestHandler {
      *  String response = MusixRequest.sendHttpRequest(MethodConstants.TRACK_LYRICS_GET.get(), map);
      * }
      * </pre>
-     * @param method Method Name.
+     *
+     * @param method     Method Name.
      * @param parameters Query Parameters in the form of a Map<String, Object>
      * @return Response String received from the Request.
      */
@@ -40,14 +43,14 @@ public class MusixRequestHandler {
         String param = FilteringConstants.API_URL.get() + FilteringConstants.API_VERSION.get() + FilteringConstants.API_DELIM.get() + processParameters(method.get(), parameters);
         StringBuffer buffer = new StringBuffer();
 
-        try{
+        try {
             URL url = new URL(param);
             Scanner sc = new Scanner(new InputStreamReader(url.openStream()));
-            while(sc.hasNext()){
+            while (sc.hasNext()) {
                 buffer.append(sc.next());
             }
 
-        }catch(IOException exception){
+        } catch (IOException exception) {
             throw new MusixException("Problem parsing the response");
         }
 
@@ -55,16 +58,15 @@ public class MusixRequestHandler {
     }
 
     @SneakyThrows
-    private static String processParameters(String method, Map<String, Object> parameters)  {
-        String param = method + "?";
+    private static String processParameters(String method, Map<String, Object> parameters) {
+        StringBuilder param = new StringBuilder(method + "?");
 
-        for(Map.Entry<String, Object> map : parameters.entrySet()) {
-                param += map.getKey() + "=" +
-                        URLEncoder.encode(map.getValue().toString(), "UTF-8");
+        for (Map.Entry<String, Object> map : parameters.entrySet()) {
+            param.append(map.getKey()).append("=").append(URLEncoder.encode(map.getValue().toString(), StandardCharsets.UTF_8));
 
-                param+="&";
-            }
-        return param.substring(0, param.length()-1);
+            param.append("&");
+        }
+        return param.substring(0, param.length() - 1);
     }
 
 }

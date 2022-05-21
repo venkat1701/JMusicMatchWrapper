@@ -1,18 +1,20 @@
 package com.venkat.musixmatch.tracks;
 
+
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- *  A Music Track operating on TrackInfo.
- * @author Venkat.
+ * Accesses status code for the Request.
+ * @author Venkat
  * @since 1.0
  */
-public class Track {
+public class TrackHeader {
 
-    @SerializedName("track")
+
+    @SerializedName("status_code")
     @Getter
     @Setter
-    private TrackInfo info;
+    private int status;
 }

@@ -9,9 +9,9 @@ import lombok.Setter;
 import java.util.List;
 
 /**
+ * Contains all possible parameters the Body of the response can contain.
  * @author Venkat.
  * @since 1.0
- * Contains all possible parameters the Body of the response can contain.
  */
 public class TrackBody {
 

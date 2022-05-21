@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Contains all the Track Info of the Tracks.
  * @author Venkat.
  * @since 1.0
- * Contains all the Track Info of the Tracks.
  *
  */
 @Getter @Setter

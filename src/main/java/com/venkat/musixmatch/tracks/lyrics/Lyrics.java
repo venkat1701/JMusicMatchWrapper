@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Lyrics class contains the Information of Lyrics about a Particular Track.
  * @author Venkat.
  * @since 1.0
- * Lyrics class contains the Information of Lyrics about a Particular Track.
  * @see com.venkat.musixmatch.tracks.TrackInfo
  */
 public class Lyrics {

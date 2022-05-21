@@ -4,22 +4,19 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Breaks the API Response into a GenericContainer.
+ *
+ * @author Venkat.
+ * @since 1.0
+ */
 @Getter
 @Setter
-public class GenericExtractor{
+public class GenericExtractor {
     @SerializedName("message")
-     @Setter
     private GenericContainer container;
-
-    public GenericExtractor() {}
 
     public GenericExtractor(GenericContainer container) {
         this.container = container;
     }
-
-
-    public GenericContainer getContainer() {
-        return container;
-    }
-
 }

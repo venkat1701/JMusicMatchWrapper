@@ -1,9 +1,9 @@
 package com.venkat.musixmatch.constants;
 
 /**
- * @author Venkat.
- * @since 1.0
  * Constants of Filter Query.
+ *  @author Venkat.
+ *  @since 1.0
  */
 public enum FilteringConstants {
     F_HAS_LYRICS("f_has_lyrics"),
