@@ -2,7 +2,6 @@ package com.venkat.musixmatch.util.ext;
 
 import com.google.gson.annotations.SerializedName;
 import com.venkat.musixmatch.tracks.TrackBody;
-import com.venkat.musixmatch.tracks.TrackHeader;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,9 +20,5 @@ public class GenericContainer {
     private TrackBody body;
 
 
-    @SerializedName("header")
-    @Getter
-    @Setter
-    private TrackHeader header;
 
 }

@@ -2,6 +2,9 @@ package com.venkat.musixmatch.constants;
 
 import lombok.Getter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * StatusCodes for Results.
  * @author Venkat.

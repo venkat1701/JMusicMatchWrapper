@@ -4,12 +4,13 @@ package com.venkat.musixmatch;
 import com.google.gson.Gson;
 import com.venkat.musixmatch.constants.FilteringConstants;
 import com.venkat.musixmatch.constants.MethodConstants;
+import com.venkat.musixmatch.constants.StatusCodesMap;
+import com.venkat.musixmatch.exceptions.MusixException;
 import com.venkat.musixmatch.request.MusixRequestHandler;
 import com.venkat.musixmatch.tracks.Track;
 import com.venkat.musixmatch.tracks.lyrics.Lyrics;
 import com.venkat.musixmatch.util.ext.GenericExtractor;
 import lombok.SneakyThrows;
-
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +38,8 @@ public final class MusixMatch {
     private Gson gson;
 
     private Map<String, Object> map;
+
+    private Map<Integer, String> statuscodes;
 
     private GenericExtractor extractor;
 
@@ -67,12 +70,21 @@ public final class MusixMatch {
         this.map.put(FilteringConstants.TRACK_ID.get(), String.format("%s", Integer.parseInt(id)));
 
         String response = MusixRequestHandler.sendHttpRequest(MethodConstants.TRACK_GET, map);
-        this.extractor = this.gson.fromJson(response, GenericExtractor.class);
-        var container = extractor.getContainer().getBody();
-        track.setInfo(container.getTrackInfo());
-        this.gson = null;
-        this.map = new HashMap<>();
-        return track;
+
+        int status = this.getStatusCode(response);
+
+        if(status == 200) {
+            this.extractor = this.gson.fromJson(response, GenericExtractor.class);
+            var container = extractor.getContainer().getBody();
+            track.setInfo(container.getTrackInfo());
+            this.gson = null;
+            this.map = new HashMap<>();
+            return track;
+        } else {
+            this.gson = null;
+            this.map = new HashMap<>();
+            throw new MusixException(String.format(" Error Code : %d : "+StatusCodesMap.getStatuscodesMap().get(status), status));
+        }
     }
 
     /**
@@ -99,11 +111,18 @@ public final class MusixMatch {
 
 
         String response = MusixRequestHandler.sendHttpRequest(MethodConstants.TRACK_SEARCH, map);
+        int status = this.getStatusCode(response);
 
-        var extractor = this.gson.fromJson(response, GenericExtractor.class);
-        this.gson = null;
-        this.map = new HashMap<>();
-        return extractor.getContainer().getBody().getTracksList();
+        if(status == 200) {
+            var extractor = this.gson.fromJson(response, GenericExtractor.class);
+            this.gson = null;
+            this.map = new HashMap<>();
+            return extractor.getContainer().getBody().getTracksList();
+        } else{
+            this.gson = null;
+            this.map = new HashMap<>();
+            throw new MusixException(String.format(" Error Code : %d : "+StatusCodesMap.getStatuscodesMap().get(status), status));
+        }
     }
 
     /**
@@ -127,10 +146,18 @@ public final class MusixMatch {
         this.map.put("s_track_rating", "desc");
 
         String response = MusixRequestHandler.sendHttpRequest(MethodConstants.TRACK_SEARCH, map);
-        var extractor = this.gson.fromJson(response, GenericExtractor.class);
-        this.gson = null;
-        this.map = new HashMap<>();
-        return extractor.getContainer().getBody().getTracksList();
+        int status = this.getStatusCode(response);
+
+        if(status == 200) {
+            var extractor = this.gson.fromJson(response, GenericExtractor.class);
+            this.gson = null;
+            this.map = new HashMap<>();
+            return extractor.getContainer().getBody().getTracksList();
+        } else{
+            this.gson = null;
+            this.map = new HashMap<>();
+            throw new MusixException(String.format(" Error Code : %d : "+StatusCodesMap.getStatuscodesMap().get(status), status));
+        }
     }
 
     /**
@@ -151,11 +178,27 @@ public final class MusixMatch {
         this.map.put(FilteringConstants.TRACK_ID.get(), trackid);
 
         String response = MusixRequestHandler.sendHttpRequest(MethodConstants.TRACK_LYRICS_GET, map);
-        System.out.println(response);
-        var extractor = this.gson.fromJson(response, GenericExtractor.class);
-        this.gson = null;
 
-        return extractor.getContainer().getBody().getLyrics();
+        int status = this.getStatusCode(response);
+
+        if(status == 200) {
+            var extractor = this.gson.fromJson(response, GenericExtractor.class);
+            this.gson = null;
+            return extractor.getContainer().getBody().getLyrics();
+        }else {
+            this.gson = null;
+            this.map = new HashMap<>();
+            throw new MusixException(String.format(" Error Code : %d : "+StatusCodesMap.getStatuscodesMap().get(status), status));
+        }
+    }
+
+    /**
+     * Returns the Status Code edited from the String.
+     * @param response The String response from the HTTP Request.
+     * @return Status Code in Integer type.
+     */
+    private int getStatusCode(String response){
+        return Integer.parseInt(response.substring(response.indexOf("status_code")+13,response.indexOf("status_code")+16));
     }
 
 }
