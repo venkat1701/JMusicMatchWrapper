@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JMusicMatch Library" />
+        <module name="JMusicMatchWrapper" />
       </profile>
     </annotationProcessing>
   </component>
