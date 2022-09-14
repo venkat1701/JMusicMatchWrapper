@@ -9,7 +9,9 @@ public enum MethodConstants {
 
     TRACK_SEARCH("track.search"),
     TRACK_GET("track.get"),
-    TRACK_LYRICS_GET("track.lyrics.get");
+    TRACK_LYRICS_GET("track.lyrics.get"),
+
+    TRACK_LYRICS_MOOD_GET("track.lyrics.mood.get");
 
     private String method;
 

@@ -13,6 +13,7 @@ public enum FilteringConstants {
     Q_TRACK("q_track"),
     QUERY("q"),
     Q_ARTIST("q_artist"),
+    TRACK_ISRC("track_isrc"),
     API_URL("https://api.musixmatch.com/ws/"),
     API_VERSION("1.1"),
     API_DELIM("/"),

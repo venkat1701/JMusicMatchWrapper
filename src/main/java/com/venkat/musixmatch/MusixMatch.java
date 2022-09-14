@@ -9,9 +9,12 @@ import com.venkat.musixmatch.exceptions.MusixException;
 import com.venkat.musixmatch.request.MusixRequestHandler;
 import com.venkat.musixmatch.tracks.Track;
 import com.venkat.musixmatch.tracks.lyrics.Lyrics;
+import com.venkat.musixmatch.tracks.lyrics.LyricsMoodList;
+import com.venkat.musixmatch.tracks.lyrics.utils.Mood;
 import com.venkat.musixmatch.util.ext.GenericExtractor;
 import lombok.SneakyThrows;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -190,6 +193,34 @@ public final class MusixMatch {
             this.map = new HashMap<>();
             throw new MusixException(String.format(" Error Code : %d : "+StatusCodesMap.getStatuscodesMap().get(status), status));
         }
+    }
+
+
+    /**
+     * Gets the List of Moods and their AI generated mood values.
+     * @param id Unique Track ID of the Music Track.
+     * @return Returns the list of Mood present in the Track Lyrics.
+     */
+    @SneakyThrows
+    public List<Mood> getMoodOfLyric(String id, String isrc) {
+        this.gson = new Gson();
+        Track track = new Track();
+        this.map.put(FilteringConstants.API_KEY.get(), this.apiKey);
+        this.map.put(FilteringConstants.TRACK_ID.get(), id);
+        this.map.put(FilteringConstants.TRACK_ISRC.get(), isrc);
+
+        String response = MusixRequestHandler.sendHttpRequest(MethodConstants.TRACK_LYRICS_MOOD_GET, map);
+        int status = this.getStatusCode(response);
+        if(status == 200) {
+            var extractor = this.gson.fromJson(response, GenericExtractor.class);
+            this.gson = null;
+            return extractor.getContainer().getBody().getLyricsMoodList().getMoodList();
+        } else {
+            this.gson = null;
+            this.map = new HashMap<>();
+            throw new MusixException(String.format("Error Code : %d : "+StatusCodesMap.getStatuscodesMap().get(status), status));
+        }
+
     }
 
     /**

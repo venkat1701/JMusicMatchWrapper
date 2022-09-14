@@ -1,8 +1,11 @@
-package com.venkat.musixmatch.tracks;
+package com.venkat.musixmatch.util.ext;
 
 import com.google.gson.annotations.SerializedName;
 
+import com.venkat.musixmatch.tracks.Track;
+import com.venkat.musixmatch.tracks.TrackInfo;
 import com.venkat.musixmatch.tracks.lyrics.Lyrics;
+import com.venkat.musixmatch.tracks.lyrics.LyricsMoodList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +16,7 @@ import java.util.List;
  * @author Venkat.
  * @since 1.0
  */
-public class TrackBody {
+public class ResponseBodyHandler {
 
     @SerializedName("track")
     @Getter @Setter
@@ -26,4 +29,8 @@ public class TrackBody {
     @SerializedName("lyrics")
     @Getter @Setter
     private Lyrics lyrics;
+
+    @SerializedName("mood-list")
+    @Getter @Setter
+    private LyricsMoodList lyricsMoodList;
 }

@@ -1,7 +1,6 @@
 package com.venkat.musixmatch.util.ext;
 
 import com.google.gson.annotations.SerializedName;
-import com.venkat.musixmatch.tracks.TrackBody;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +16,7 @@ public class GenericContainer {
     @SerializedName("body")
     @Setter
     @Getter
-    private TrackBody body;
+    private ResponseBodyHandler body;
 
 
 

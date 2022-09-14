@@ -5,6 +5,7 @@ import com.venkat.musixmatch.exceptions.MusixException;
 import com.venkat.musixmatch.tracks.Track;
 import com.venkat.musixmatch.tracks.TrackInfo;
 import com.venkat.musixmatch.tracks.lyrics.Lyrics;
+import com.venkat.musixmatch.tracks.lyrics.utils.Mood;
 
 import java.util.List;
 
@@ -30,6 +31,10 @@ public class MusixMatchInstanceTest {
         // Fetching Lyrics of a given Track.
         Lyrics lyrics = instance.getLyricsOfTrack("2341560");
         System.out.println(lyrics.getLyricsBody());
+
+        // Fetching the MoodLists
+//        List<Mood> moodList = instance.getMoodOfLyric("96657","127082996");
+//        System.out.println(moodList);
 
     }
 }

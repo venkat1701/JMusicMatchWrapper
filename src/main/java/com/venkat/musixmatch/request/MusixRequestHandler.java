@@ -40,7 +40,10 @@ public class MusixRequestHandler {
      */
     @SneakyThrows
     public static String sendHttpRequest(MethodConstants method, Map<String, Object> parameters) throws MusixException {
-        String param = FilteringConstants.API_URL.get() + FilteringConstants.API_VERSION.get() + FilteringConstants.API_DELIM.get() + processParameters(method.get(), parameters);
+        String param = FilteringConstants.API_URL.get()
+                + FilteringConstants.API_VERSION.get()
+                + FilteringConstants.API_DELIM.get()
+                + processParameters(method.get(), parameters);
         StringBuffer buffer = new StringBuffer();
 
         try {
