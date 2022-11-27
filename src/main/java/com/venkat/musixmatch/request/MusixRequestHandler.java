@@ -20,7 +20,8 @@ import java.util.Scanner;
  * @author Venkat.
  * @since 1.0
  */
-public class MusixRequestHandler {
+public class
+MusixRequestHandler {
 
 
     /**
