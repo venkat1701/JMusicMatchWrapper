@@ -1,7 +1,7 @@
 
 <div align="center">
 <br>
-<h2>JMusicMatch Library</h2>
+<h2>JMusicMatchWrapper</h2>
 </div>
 
 <div align = "center">
