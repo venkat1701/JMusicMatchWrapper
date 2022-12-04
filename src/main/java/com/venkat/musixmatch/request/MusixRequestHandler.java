@@ -51,7 +51,7 @@ MusixRequestHandler {
             URL url = new URL(param);
             Scanner sc = new Scanner(new InputStreamReader(url.openStream()));
             while (sc.hasNext()) {
-                buffer.append(sc.next());
+                buffer.append(sc.next()+" ");
             }
 
         } catch (IOException exception) {
@@ -64,10 +64,8 @@ MusixRequestHandler {
     @SneakyThrows
     private static String processParameters(String method, Map<String, Object> parameters) {
         StringBuilder param = new StringBuilder(method + "?");
-
         for (Map.Entry<String, Object> map : parameters.entrySet()) {
-            param.append(map.getKey()).append("=").append(URLEncoder.encode(map.getValue().toString(), StandardCharsets.UTF_8));
-
+            param.append(map.getKey()).append("=").append(URLEncoder.encode(map.getValue().toString(), StandardCharsets.UTF_16));
             param.append("&");
         }
         return param.substring(0, param.length() - 1);
