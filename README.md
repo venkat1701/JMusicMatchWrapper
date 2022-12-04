@@ -1,8 +1,7 @@
 
 <div align="center">
-<img src="images/logo.png" width="200" height="200">
 <br>
-<h2>JMusicMatch Library</h2>
+<h2>JMusicMatchWrapper</h2>
 </div>
 
 <div align = "center">
